@@ -64,26 +64,6 @@ const get = async (req, res) => {
     }
 }
 
-const getAll = async (req, res) => {
-    try {
-        const cities = await cityService.getAllCities();
-        return res.status(200).json({
-            data: cities,
-            success: true,
-            message: "Successfully retrieved all cities",
-            err: {}
-        })
-    } catch (error) {
-        console.log("Something went wrong in the controller layer: Controller: getAll", error);
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: "Not able to get the cities",
-            err: error
-        })
-    }
-}
-
 // PUT -> /api/cities/:id
 const update = async (req, res) => {
     try {
@@ -100,6 +80,26 @@ const update = async (req, res) => {
             data: {},
             success: false,
             message: "Not able to update the city",
+            err: error
+        })
+    }
+}
+
+const getAll = async (req, res) => {
+    try {
+        const cities = await cityService.getAllCities(req.query);
+        return res.status(200).json({
+            data: cities,
+            success: true,
+            message: "Successfully retrieved all cities",
+            err: {}
+        })  
+    } catch (error) {
+        console.log("Something went wrong in the controller layer: Controller: getAll", error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: "Not able to get the cities",
             err: error
         })
     }
