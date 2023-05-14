@@ -27,11 +27,18 @@ class CityRepository {
 
     async updateCity(cityId, data) {
         try {
-            const city = await City.update(data, {
-                where: {
-                    id: cityId
-                }
-            })
+            // The below approach will not return updated city object
+            // const city = await City.update(data, {
+            //     where: {
+            //         id: cityId
+            //     }
+            // })
+
+            // The below approach will return updated city object
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
+
             return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer: Service: updateCity", error);
