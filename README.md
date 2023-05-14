@@ -40,4 +40,8 @@
 
 ### Airport -> id, name, address, cityId, createdAt, updatedAt
 
+```
+npx sequelize model:generate --name Airport --attributes name:String,address:String,cityId:integer
+```
+
 Relationships -> A city has many airports but an airport belongs to only one city (One to Many)
