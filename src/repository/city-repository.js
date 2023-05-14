@@ -42,7 +42,7 @@ class CityRepository {
             return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer: Service: updateCity", error);
-            throw { error } 
+            throw { error }
         }
     }
 
@@ -52,6 +52,16 @@ class CityRepository {
             return city;
         } catch (error) {
             console.log("Something went wrong in the repository layer: Service: getCity", error);
+            throw { error }
+        }
+    }
+
+    async getAllCities() {
+        try {
+            const cities = await City.findAll();
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer: Service: getAllCities", error);
             throw { error }
         }
     }
