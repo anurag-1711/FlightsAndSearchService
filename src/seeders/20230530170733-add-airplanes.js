@@ -13,50 +13,40 @@ module.exports = {
      * }], {});
     */
 
-    await queryInterface.bulkInsert('Airports', [
+    await queryInterface.bulkInsert('Airplanes', [
       {
-        name: "Kempagowda International Airport",
-        address: "Bengaluru, Karnataka 560300",
-        cityId: 11,
+        modelNumber: 'Boeing 747',
+        capacity: 400,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: 'Mysore Airport',
-        address: 'Mysore, Karnataka 570008',
-        cityId: 11,
+        modelNumber: 'Boeing 777',
+        capacity: 500,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: "Mangalore International Airport",
-        address: "Kenjar, Bajpe, Karnataka 574142",
-        cityId: 11,
+        modelNumber: 'Airbus A320',
+        capacity: 600,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: "Chhatrapati Shivaji Maharaj International Airport",
-        address: "Mumbai, Maharashtra 400099",
-        cityId: 20,
+        modelNumber: 'Boeing 737',
+        capacity: 700,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        name: "Indira Gandhi International Airport",
-        address: "New Delhi, Delhi 110037",
-        cityId: 12,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
-      {
-        name: "Chennai International Airport",
-        address: "Chennai, Tamil Nadu 600027",
-        cityId: 13,
+        modelNumber: 'Airbus A330',
+        capacity: 800,
         createdAt: new Date(),
         updatedAt: new Date()
       }
     ], {});
+
+
   },
 
   async down(queryInterface, Sequelize) {

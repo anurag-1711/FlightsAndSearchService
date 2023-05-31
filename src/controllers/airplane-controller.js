@@ -1,14 +1,14 @@
-const { CityService } = require('../services/index')
+const { AirplaneService } = require('../services/index');
 
-const cityService = new CityService();
+const airplaneService = new AirplaneService();
 
 const create = async (req, res) => {
     try {
-        const city = await cityService.createCity(req.body);
+        const airplane = await airplaneService.createAirplane(req.body);
         return res.status(201).json({
-            data: city,
+            data: airplane,
             success: true,
-            message: "Successfully created a city",
+            message: "Successfully created a airplane",
             err: {}
         })
     } catch (error) {
@@ -16,7 +16,7 @@ const create = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to create a city",
+            message: "Not able to create a airplane",
             err: error
         })
     }
@@ -24,11 +24,11 @@ const create = async (req, res) => {
 
 const createMany = async (req, res) => {
     try {
-        const cities = await cityService.createManyCities(req.body);
-        return res.status(200).json({
-            data: cities,
+        const airplanes = await airplaneService.createManyAirplanes(req.body);
+        return res.status(201).json({
+            data: airplanes,
             success: true,
-            message: "Successfully created an array of Cities",
+            message: "Successfully created an array of Airplanes",
             err: {}
         })
     } catch (error) {
@@ -36,20 +36,20 @@ const createMany = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to create an array of cities",
+            message: "Not able to create an array of airplanes",
             err: error
         })
     }
 }
 
-// DELETE -> /api/cities/:id
+// DELETE -> /api/airplanes/:id
 const destroy = async (req, res) => {
     try {
-        const response = await cityService.deleteCity(req.params.id);
+        const response = await airplaneService.deleteAirplane(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully deleted a city",
+            message: "Successfully deleted a airplane",
             err: {}
         })
     } catch (error) {
@@ -57,41 +57,20 @@ const destroy = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to delete the city",
+            message: "Not able to delete a airplane",
             err: error
         })
     }
 }
 
-// GET -> /api/cities/:id
-const get = async (req, res) => {
-    try {
-        const city = await cityService.getCity(req.params.id);
-        return res.status(200).json({
-            data: city,
-            success: true,
-            message: "Successfully retrieved a city",
-            err: {}
-        })
-    } catch (error) {
-        console.log("Something went wrong in the controller layer: Controller: get", error);
-        return res.status(500).json({
-            data: {},
-            success: false,
-            message: "Not able to get the city",
-            err: error
-        })
-    }
-}
-
-// PATCH -> /api/cities/:id
+// PATCH -> /api/airplanes/:id
 const update = async (req, res) => {
     try {
-        const city = await cityService.updateCity(req.params.id, req.body);
+        const airplane = await airplaneService.updateAirplane(req.params.id, req.body);
         return res.status(200).json({
-            data: city,
+            data: airplane,
             success: true,
-            message: "Successfully updated a city",
+            message: "Successfully updated a airplane",
             err: {}
         })
     } catch (error) {
@@ -99,19 +78,41 @@ const update = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to update the city",
+            message: "Not able to update a airplane",
             err: error
         })
     }
 }
 
+// GET -> /api/airplanes/:id
+const get = async (req, res) => {
+    try {
+        const airplane = await airplaneService.getAirplane(req.params.id);
+        return res.status(200).json({
+            data: airplane,
+            success: true,
+            message: "Successfully retrieved a airplane",
+            err: {}
+        })
+    } catch (error) {
+        console.log("Something went wrong in the controller layer: Controller: get", error);
+        return res.status(500).json({
+            data: {},
+            success: false,
+            message: "Not able to get a airplane",
+            err: error
+        })
+    }
+}
+
+// GET -> /api/airplanes
 const getAll = async (req, res) => {
     try {
-        const cities = await cityService.getAllCities(req.query);
+        const airplanes = await airplaneService.getAllAirplanes(req.query);
         return res.status(200).json({
-            data: cities,
+            data: airplanes,
             success: true,
-            message: "Successfully retrieved all cities",
+            message: "Successfully retrieved all airplanes",
             err: {}
         })
     } catch (error) {
@@ -119,7 +120,7 @@ const getAll = async (req, res) => {
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to get the cities",
+            message: "Not able to get all airplanes",
             err: error
         })
     }
@@ -127,9 +128,9 @@ const getAll = async (req, res) => {
 
 module.exports = {
     create,
+    createMany,
     destroy,
-    get,
     update,
-    getAll,
-    createMany
+    get,
+    getAll
 }

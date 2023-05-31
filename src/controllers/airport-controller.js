@@ -1,135 +1,132 @@
-const { CityService } = require('../services/index')
+const { AirportService } = require('../services/index');
 
-const cityService = new CityService();
+const airportService = new AirportService();
 
 const create = async (req, res) => {
     try {
-        const city = await cityService.createCity(req.body);
+        const airport = await airportService.createAirport(req.body);
         return res.status(201).json({
-            data: city,
+            data: airport,
             success: true,
-            message: "Successfully created a city",
+            message: "Successfully created an airport",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: create", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to create a city",
+            message: "Not able to create an airport",
             err: error
-        })
+        });
     }
-}
+};
 
 const createMany = async (req, res) => {
     try {
-        const cities = await cityService.createManyCities(req.body);
+        const airports = await airportService.createManyAirports(req.body);
         return res.status(200).json({
-            data: cities,
+            data: airports,
             success: true,
-            message: "Successfully created an array of Cities",
+            message: "Successfully created an array of airports",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: createMany", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to create an array of cities",
+            message: "Not able to create an array of airports",
             err: error
-        })
+        });
     }
-}
+};
 
-// DELETE -> /api/cities/:id
 const destroy = async (req, res) => {
     try {
-        const response = await cityService.deleteCity(req.params.id);
+        const response = await airportService.deleteAirport(req.params.id);
         return res.status(200).json({
             data: response,
             success: true,
-            message: "Successfully deleted a city",
+            message: "Successfully deleted an airport",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: destroy", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to delete the city",
+            message: "Not able to delete the airport",
             err: error
-        })
+        });
     }
-}
+};
 
-// GET -> /api/cities/:id
 const get = async (req, res) => {
     try {
-        const city = await cityService.getCity(req.params.id);
+        const airport = await airportService.getAirport(req.params.id);
         return res.status(200).json({
-            data: city,
+            data: airport,
             success: true,
-            message: "Successfully retrieved a city",
+            message: "Successfully retrieved an airport",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: get", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to get the city",
+            message: "Not able to get the airport",
             err: error
-        })
+        });
     }
-}
+};
 
-// PATCH -> /api/cities/:id
 const update = async (req, res) => {
     try {
-        const city = await cityService.updateCity(req.params.id, req.body);
+        const airport = await airportService.updateAirport(req.params.id, req.body);
         return res.status(200).json({
-            data: city,
+            data: airport,
             success: true,
-            message: "Successfully updated a city",
+            message: "Successfully updated an airport",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: update", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to update the city",
+            message: "Not able to update the airport",
             err: error
-        })
+        });
     }
-}
+};
 
 const getAll = async (req, res) => {
     try {
-        const cities = await cityService.getAllCities(req.query);
+        const airports = await airportService.getAllAirports(req.query);
         return res.status(200).json({
-            data: cities,
+            data: airports,
             success: true,
-            message: "Successfully retrieved all cities",
+            message: "Successfully retrieved all airports",
             err: {}
-        })
+        });
     } catch (error) {
         console.log("Something went wrong in the controller layer: Controller: getAll", error);
         return res.status(500).json({
             data: {},
             success: false,
-            message: "Not able to get the cities",
+            message: "Not able to get the airports",
             err: error
-        })
+        });
     }
-}
+};
 
 module.exports = {
     create,
+    createMany,
     destroy,
     get,
     update,
-    getAll,
-    createMany
-}
+    getAll
+};

@@ -13,6 +13,21 @@ class CityRepository {
         }
     }
 
+    async createManyCities(names) {
+        const new_names = names.map((n) => {
+            return { name: n };
+        })
+        // console.log(new_names);
+
+        try {
+            const cities = await City.bulkCreate(new_names);
+            return cities;
+        } catch (error) {
+            console.log("Something went wrong in the repository layer: Service: createManyCities", error);
+            throw { error }
+        }
+    }
+
     async deleteCity(cityId) {
         try {
             await City.destroy({
@@ -60,7 +75,6 @@ class CityRepository {
 
     async getAllCities(filter) { // filter is an optional parameter(can be empty)
         try {
-
             if (filter.name) {
                 const cities = await City.findAll({
                     where: {
